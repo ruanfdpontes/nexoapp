@@ -11,7 +11,7 @@ export default async function LoginPage() {
     const payload = await verifyToken(token);
 
     if (payload) {
-      if (payload.admin === 1) {
+      if (payload.admin === true) {
         redirect("/users");
       }
 

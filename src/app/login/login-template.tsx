@@ -37,7 +37,7 @@ export default function LoginTemplate() {
       }
 
       setLogged(true);
-      if (data.user.admin === 1) {
+      if (data.user.admin === true) {
         window.location.href = "/users";
         return;
       }
@@ -69,7 +69,7 @@ export default function LoginTemplate() {
               placeholder="Digite seu usuário ou e-mail"
               autoComplete="username"
               value={username}
-              onChange={(event) => setUsername(event.target.value)}
+              onChange={(event) => setUsername(event.target.value.toLocaleLowerCase())}
             />
           </div>
 

@@ -174,17 +174,17 @@ export default function UserTemplate() {
                   type="text"
                   placeholder="Digite o usuário"
                   value={username}
-                  onChange={(event) => setUsername(event.target.value)}
+                  onChange={(event) => setUsername(event.target.value.toLowerCase())}
                   required
                 />
               </div>
 
               <div className="form-group">
-                <label htmlFor="username">E-mail</label>
+                <label htmlFor="email">E-mail</label>
 
                 <input
                   id="email"
-                  type="text"
+                  type="email"
                   placeholder="Digite o e-mail"
                   value={email}
                   onChange={(event) => setEmail(event.target.value)}
@@ -206,7 +206,7 @@ export default function UserTemplate() {
               </div>
 
               <div className="form-group">
-                <label htmlFor="password">Confirmação de Senha</label>
+                <label htmlFor="passwordConfirmation">Confirmação de Senha</label>
 
                 <input
                   id="passwordConfirmation"

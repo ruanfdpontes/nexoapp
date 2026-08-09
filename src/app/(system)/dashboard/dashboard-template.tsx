@@ -7,7 +7,7 @@ type User = {
   name: string;
   username: string;
   email: string
-  admin: number;
+  admin: boolean;
 };
 
 export default function DashboardTemplate() {

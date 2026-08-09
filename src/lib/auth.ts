@@ -13,7 +13,7 @@ export type AuthPayload = {
   username: string;
   email: string;
   name: string;
-  admin: number;
+  admin: boolean;
 };
 
 export async function createToken(payload: AuthPayload) {

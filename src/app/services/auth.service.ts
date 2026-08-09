@@ -16,8 +16,8 @@ export async function login(
   username: string,
   password: string
 ) {
-  const user = db
-    .prepare(`
+  const userQuery = await db
+    .query(`
       SELECT
         id,
         name,
@@ -27,10 +27,13 @@ export async function login(
         admin,
         deleted_at
       FROM users
-      WHERE username = ?
+      WHERE username = $1
       LIMIT 1
-    `)
-    .get(username) as User | undefined;
+    `,
+    [username]
+  )
+
+  const user = userQuery.rows[0];
 
   if (!user || user.deleted_at) {
     throw new Error("INVALID_CREDENTIALS");

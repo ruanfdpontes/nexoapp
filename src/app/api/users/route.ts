@@ -1,23 +1,10 @@
 import { NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import db from "@/lib/db";
+import UserService from "@/app/services/user.service"
 
 export async function GET() {
   try {
-    const users = db
-      .prepare(`
-        SELECT
-          id,
-          name,
-          username,
-          email,
-          created_at
-        FROM users
-        WHERE deleted_at IS NULL AND
-            admin = 0
-        ORDER BY name
-      `)
-      .all();
+    const users = await UserService.listUsers();
 
     return NextResponse.json({
       users,
@@ -37,8 +24,8 @@ export async function POST(request: Request) {
     const body = await request.json();
 
     const name = body.name?.trim();
-    const username = body.username?.trim();
-    const email = body.email?.trim();
+    const username = body.username?.trim().toLowerCase();
+    const email = body.email?.trim().toLowerCase();
     const password = body.password;
 
     if (!name || !username || !email || !password) {
@@ -50,15 +37,10 @@ export async function POST(request: Request) {
       );
     }
 
-    let userFound = db
-      .prepare(`
-        SELECT id
-        FROM users
-        WHERE username = ? OR
-            email = ?
-        LIMIT 1
-      `)
-      .get(username, email);
+    const userFound = await UserService.getUser({
+      username,
+      email,
+    });
 
     if (userFound) {
       return NextResponse.json(
@@ -68,33 +50,19 @@ export async function POST(request: Request) {
         { status: 409 }
       );
     }
-    
-    const passwordHash = await bcrypt.hash(password, 10);
 
-    const result = db
-      .prepare(`
-        INSERT INTO users (
-          name,
-          username,
-          email,
-          password,
-          admin
-        )
-        VALUES (?, ?, ?, ?, ?)
-      `)
-      .run(
-        name,
-        username,
-        email,
-        passwordHash,
-        0
-      );
+    const result = await UserService.createUser({
+      name,
+      username,
+      email,
+      password
+    })
 
     return NextResponse.json(
       {
         message: "Usuário cadastrado com sucesso.",
         usuario: {
-          id: Number(result.lastInsertRowid),
+          id: Number(result.id),
           name,
           username,
           email,
@@ -125,22 +93,16 @@ export async function DELETE(request: Request) {
       );
     }
 
-     const result = db
-      .prepare(`
-        UPDATE users
-        SET updated_at = CURRENT_TIMESTAMP,
-            deleted_at = CURRENT_TIMESTAMP
-        WHERE id = ?
-          AND deleted_at IS NULL
-      `)
-      .run(id);
+    const userFound = await UserService.getUser({id})
 
-    if (result.changes === 0) {
+    if (!userFound) {
       return NextResponse.json(
-        { error: "Usuário não encontrado." },
+        { error: "Usuário não encontrado!" },
         { status: 404 }
       );
     }
+
+    await UserService.deleteUser(userFound.id)
 
     return NextResponse.json({
       message: "Usuário excluído com sucesso.",

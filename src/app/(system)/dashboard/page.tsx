@@ -18,7 +18,7 @@ export default async function DashboardPage() {
       redirect("/login");
     }
   
-    if (payload.admin !== 0) {
+    if (payload.admin === true) {
       redirect("/users");
     }
   
