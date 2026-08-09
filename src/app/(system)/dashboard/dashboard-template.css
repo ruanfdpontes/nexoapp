@@ -1,0 +1,33 @@
+.dashboard-page {
+  min-height: 100dvh;
+  background: #f5f7fa;
+}
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: #171717;
+}
+
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 20px 16px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 20px;
+  }
+}

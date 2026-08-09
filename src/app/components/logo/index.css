@@ -1,0 +1,19 @@
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-self: center;
+
+  border-radius: 14px;
+
+  background: #2563eb;
+
+  overflow: hidden;
+}
+
+.logo img {
+  width: 80%;
+  height: 80%;
+
+  object-fit: contain;
+}
