@@ -1,0 +1,158 @@
+.data-list {
+  width: 100%;
+}
+
+/* =========================================
+   DESKTOP - TABELA
+========================================= */
+
+.data-list-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.data-list-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-list-table thead {
+  background: #f8fafc;
+}
+
+.data-list-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 13px;
+  font-weight: 600;
+  color: #475569;
+  white-space: nowrap;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.data-list-table td {
+  padding: 14px 16px;
+  font-size: 14px;
+  color: #1e293b;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.data-list-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.data-list-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+/* =========================================
+   PAGINAÇÃO
+========================================= */
+
+.data-list-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.data-list-pagination button {
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.data-list-pagination > button {
+  padding: 8px 14px;
+}
+
+.data-list-pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.data-list-pages {
+  display: flex;
+  gap: 6px;
+}
+
+.data-list-pages button {
+  width: 36px;
+  height: 36px;
+}
+
+.data-list-pages button.active {
+  background: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+.data-list-mobile {
+  display: none;
+}
+
+.data-list-loading {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+  color: #666;
+}
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.data-list-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.data-list-empty-icon {
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.data-list-empty h3 {
+  margin: 0 0 8px;
+}
+
+.data-list-empty p {
+  margin: 0;
+  color: #666;
+}
+
+.data-list-desktop {
+  width: 100%;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+  .data-list-desktop {
+    display: none;
+  }
+
+  .data-list-mobile {
+    display: block;
+  }
+
+  .data-list-item {
+    margin-bottom: 10px;
+  }
+}

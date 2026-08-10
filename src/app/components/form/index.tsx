@@ -2,6 +2,7 @@
 
 import {
   FormEvent,
+  InputHTMLAttributes,
   ReactNode,
 } from "react";
 
@@ -13,17 +14,9 @@ interface FormProps {
   className?: string;
 }
 
-interface FormFieldProps {
-  label: string;
-  name: string;
-  type?: "text" | "email" | "tel" | "number" | "password";
-  value: string;
-  placeholder?: string;
-  required?: boolean;
-  disabled?: boolean;
-  onChange: (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => void;
+interface FormFieldProps
+  extends InputHTMLAttributes<HTMLInputElement> { 
+  label: string; 
 }
 
 interface FormActionsProps {
@@ -95,7 +88,7 @@ export function FormActions({
       {onCancel && (
         <button
           type="button"
-          className="form-button form-button-cancel"
+          className="btn btn-secondary"
           onClick={onCancel}
           disabled={loading}
         >
@@ -105,7 +98,7 @@ export function FormActions({
 
       <button
         type="submit"
-        className="form-button form-button-submit"
+        className="btn btn-primary"
         disabled={loading}
       >
         {loading ? loadingText : submitText}

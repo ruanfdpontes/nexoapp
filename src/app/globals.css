@@ -105,6 +105,17 @@ a {
   background: #b91c1c;
 }
 
+/* Atenção */
+
+.btn-warning {
+  background: yellow;
+  color: #000000;
+}
+
+.btn-warning:hover {
+  background: rgb(211, 211, 0);
+}
+
 /* Pequeno */
 
 .btn-sm {

@@ -1,9 +1,10 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { verifyToken } from "@/lib/auth";
-import LidershipsTemplate from "./liderships-template";
+import LeadershipsTemplate from "./leadership-template";
+import LeadershipTemplate from "./leadership-template";
 
-export default async function DashboardPage() {
+export default async function LeadershipPage() {
     const cookieStore = await cookies();
   
     const token = cookieStore.get("nexoapp_token")?.value;
@@ -22,5 +23,5 @@ export default async function DashboardPage() {
       redirect("/users");
     }
   
-    return <LidershipsTemplate />;
+    return <LeadershipTemplate />;
 }

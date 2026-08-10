@@ -1,4 +1,4 @@
-function formatDate(date: string) {
+const FormatDate = (date: string) => {
   const utcDate = new Date(date.replace(" ", "T") + "Z");
 
   const data = utcDate.toLocaleDateString("pt-BR", {
@@ -18,4 +18,4 @@ function formatDate(date: string) {
   return `${data} ${hora}`;
 }
 
-export default formatDate
+export default FormatDate

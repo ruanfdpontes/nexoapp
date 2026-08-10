@@ -106,7 +106,7 @@ export default function Sidebar() {
           <button
             type="button"
             className="menu-item"
-            onClick={() => navigate("/liderships")}
+            onClick={() => navigate("/leaderships")}
           >
             <Users
               className="menu-icon"

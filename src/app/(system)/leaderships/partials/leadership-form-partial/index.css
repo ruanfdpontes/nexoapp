@@ -1,0 +1,13 @@
+.leadership-main-fields {
+  grid-template-columns: 3fr 1fr 1fr;
+}
+
+.leadership-full-field {
+  grid-template-columns: 1fr;
+}
+
+@media (max-width: 700px) {
+  .leadership-main-fields {
+    grid-template-columns: 1fr;
+  }
+}
