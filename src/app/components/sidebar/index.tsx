@@ -6,13 +6,12 @@ import {
   LayoutDashboard,
   Users,
   LogOut,
-  Menu,
   X,
   ChevronRight,
   ChevronLeft,
 } from "lucide-react";
+
 import "./index.css";
-import Image from "next/image";
 import Logo from "../logo";
 
 export default function Sidebar() {
@@ -44,7 +43,7 @@ export default function Sidebar() {
         onClick={() => setOpen(true)}
         aria-label="Abrir menu"
       >
-        <Menu size={24} />
+        ☰
       </button>
 
       {/* OVERLAY MOBILE */}
@@ -55,6 +54,7 @@ export default function Sidebar() {
         />
       )}
 
+      {/* SIDEBAR */}
       <aside
         className={`sidebar ${
           open ? "sidebar-open" : ""
@@ -74,25 +74,7 @@ export default function Sidebar() {
             </span>
           </div>
 
-          {/* Controle desktop */}
-          <button
-            type="button"
-            className="sidebar-collapse-button"
-            onClick={() => setCollapsed((value) => !value)}
-            aria-label={
-              collapsed
-                ? "Expandir menu"
-                : "Recolher menu"
-            }
-          >
-            {collapsed ? (
-              <ChevronRight size={18} />
-            ) : (
-              <ChevronLeft size={18} />
-            )}
-          </button>
-
-          {/* Controle mobile */}
+          {/* CONTROLE MOBILE */}
           <button
             type="button"
             className="sidebar-close"
@@ -158,6 +140,28 @@ export default function Sidebar() {
 
         </div>
       </aside>
+
+      {/* BOTÃO DE COLLAPSE */}
+      <button
+        type="button"
+        className={`sidebar-collapse-button ${
+          collapsed
+            ? "sidebar-collapse-button-collapsed"
+            : ""
+        }`}
+        onClick={() => setCollapsed((value) => !value)}
+        aria-label={
+          collapsed
+            ? "Expandir menu"
+            : "Recolher menu"
+        }
+      >
+        {collapsed ? (
+          <ChevronRight size={18} />
+        ) : (
+          <ChevronLeft size={18} />
+        )}
+      </button>
     </>
   );
 }

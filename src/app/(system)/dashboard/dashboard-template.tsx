@@ -34,7 +34,7 @@ export default function DashboardTemplate() {
   }, []);
   
   return (
-    <main className="dashboard-page">
+    <div className="dashboard-page">
       <div className="dashboard-container">
         <header className="dashboard-header">
           <div>
@@ -45,6 +45,6 @@ export default function DashboardTemplate() {
           </div>
         </header>
       </div>
-    </main>
+    </div>
   );
 }

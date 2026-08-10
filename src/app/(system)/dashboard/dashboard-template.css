@@ -1,12 +1,12 @@
 .dashboard-page {
-  min-height: 100dvh;
   background: #f5f7fa;
+  min-height: 100vh;
 }
 
 .dashboard-container {
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 24px;
 }
 
 .dashboard-header {
@@ -24,7 +24,7 @@
 
 @media (max-width: 600px) {
   .dashboard-container {
-    padding: 20px 16px;
+    
   }
 
   .dashboard-header h1 {

@@ -1,8 +1,38 @@
-.sidebar {
-  position: relative;
+/* =========================================
+   WRAPPER DA SIDEBAR
+========================================= */
+
+.sidebar-wrapper {
+  position: fixed;
+
+  top: 0;
+  left: 0;
 
   width: 250px;
-  height: 100dvh;
+  height: 100vh;
+
+  z-index: 1000;
+
+  transition: width 0.25s ease;
+}
+
+.sidebar-wrapper-collapsed {
+  width: 72px;
+}
+
+
+/* =========================================
+   SIDEBAR
+========================================= */
+
+.sidebar {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 220px;
+  height: 100vh;
 
   display: flex;
   flex-direction: column;
@@ -13,9 +43,12 @@
   border-right: 1px solid #e5e7eb;
 
   transition: width 0.25s ease;
-}
 
-/* HEADER */
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  z-index: 1000;
+}
 
 .sidebar-header {
   height: 70px;
@@ -64,35 +97,85 @@
   white-space: nowrap;
 }
 
-/* BOTÃO DESKTOP */
+/* =========================================
+   SIDEBAR RECOLHIDA
+========================================= */
 
-.sidebar-toggle {
-  width: 36px;
-  height: 36px;
+.sidebar.sidebar-collapsed {
+  width: 72px;
+}
 
-  flex-shrink: 0;
+.sidebar.sidebar-collapsed .sidebar-title {
+  display: none;
+}
+
+.sidebar.sidebar-collapsed .sidebar-header {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar.sidebar-collapsed .sidebar-menu {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.sidebar.sidebar-collapsed .menu-item {
+  justify-content: center;
+  padding: 0;
+}
+
+.sidebar.sidebar-collapsed .menu-label {
+  display: none;
+}
+
+
+/* =========================================
+   BOTÃO DE COLLAPSE
+========================================= */
+
+.sidebar-collapse-button {
+  position: fixed;
+
+  top: 50%;
+  left: 206px;
+
+  width: 26px;
+  height: 26px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  transform: translateY(-50%);
+
   padding: 0;
 
-  border: 0;
-  border-radius: 6px;
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
 
-  background: transparent;
+  background: #ffffff;
   color: #6b7280;
 
   cursor: pointer;
+
+  z-index: 2000;
+
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+
+  transition:
+    left 0.25s ease,
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
-.sidebar-toggle:hover {
+.sidebar-collapse-button:hover {
   background: #f3f4f6;
   color: #171717;
 }
 
-/* MENU */
+.sidebar-collapse-button-collapsed {
+  left: 58px;
+}
 
 .sidebar-menu {
   flex: 1;
@@ -158,95 +241,20 @@
   background: #fef2f2;
 }
 
-/* DESKTOP RECOLHIDO */
-
-.sidebar.sidebar-collapsed {
-  width: 72px;
-}
-
-.sidebar.sidebar-collapsed .sidebar-title {
-  display: none;
-}
-
-.sidebar.sidebar-collapsed .sidebar-header {
-  justify-content: center;
-  padding: 0;
-}
-
-.sidebar.sidebar-collapsed .sidebar-menu {
-  padding-left: 10px;
-  padding-right: 10px;
-}
-
-.sidebar.sidebar-collapsed .menu-item {
-  justify-content: center;
-  padding: 0;
-}
-
-.sidebar.sidebar-collapsed .menu-label {
-  display: none;
-}
-
-/* BOTÃO MOBILE */
-
-.mobile-menu-button {
-  display: none;
-}
-
-.sidebar-overlay {
-  display: none;
-}
-
 .sidebar-close {
   display: none;
 }
-.sidebar-collapse-button {
-  position: absolute;
 
-  top: 50%;
-  right: -12px;
-
-  width: 24px;
-  height: 24px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  transform: translateY(-50%);
-
-  padding: 0;
-
-  border: 1px solid #e5e7eb;
-  border-radius: 50%;
-
-  background: #ffffff;
-  color: #6b7280;
-
-  cursor: pointer;
-
-  z-index: 10;
-
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
-
-  transition:
-    background 0.15s ease,
-    color 0.15s ease;
-}
-
-.sidebar-collapse-button:hover {
-  background: #f3f4f6;
-  color: #171717;
-}
-/* MOBILE */
+/* =========================================
+   MOBILE
+========================================= */
 
 @media (max-width: 700px) {
-
   .mobile-menu-button {
     position: fixed;
 
     top: 16px;
-    left: 16px;
+    right: 16px;
 
     z-index: 9999;
 
@@ -259,15 +267,23 @@
 
     padding: 0;
 
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
 
-    background: #ffffff;
+    background: rgba(255, 255, 255, 0.3);
+
     color: #171717;
 
     cursor: pointer;
 
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .mobile-menu-button:hover {
+    background: rgba(255, 255, 255, 0.7);
   }
 
   .sidebar {
@@ -315,22 +331,6 @@
     display: block;
   }
 
-  /* OVERLAY */
-
-  .sidebar-overlay {
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 10000;
-
-    display: block;
-
-    background: rgba(0, 0, 0, 0.35);
-  }
-
-  /* No mobile o botão de recolher não é necessário */
-
   .sidebar-toggle {
     display: none;
   }
@@ -357,5 +357,44 @@
   .sidebar-close:hover {
     background: #f3f4f6;
     color: #171717;
+  }
+
+  .sidebar-wrapper {
+    width: 270px;
+    height: 100dvh;
+
+    transform: translateX(-100%);
+
+    transition: transform 0.25s ease;
+  }
+
+  .sidebar-wrapper .sidebar {
+    width: 270px;
+    height: 100dvh;
+  }
+
+  .sidebar-wrapper .sidebar.sidebar-open {
+    transform: none;
+  }
+
+  .sidebar-wrapper-collapsed {
+    width: 270px;
+  }
+
+  /* Não mostrar collapse no mobile */
+  .sidebar-collapse-button {
+    display: none;
+  }
+
+  .sidebar-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 10000;
+
+    display: block;
+
+    background: rgba(0, 0, 0, 0.35);
   }
 }
