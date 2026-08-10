@@ -1,8 +1,7 @@
 "use client";
 import { FormEvent, useEffect, useState } from "react";
 import "./user-template.css";
-import User from "@/interfaces/user.interface"
-import formatDate from "@/utils/formatDate";
+import User from "../interfaces/user.interface";
 
 export default function UserTemplate() {
   const [users, setUsers] = useState<User[]>([]);
