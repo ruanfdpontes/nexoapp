@@ -5,7 +5,7 @@
 }
 
 .system-content {
-  min-height: 100vh;
+  min-height: 100%;
   width: calc(100% - 250px);
   margin-left: 260px;
   padding-right: 40px;

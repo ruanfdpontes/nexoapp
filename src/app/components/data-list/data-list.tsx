@@ -8,13 +8,17 @@ import {
 } from "react";
 
 import "./data-list.css";
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import Pagination from "../pagination";
 
 interface DataListProps<T> {
   items: T[];
   renderItem: (item: T) => ReactNode;
   renderTable?: (items: T[]) => ReactNode;
 
-  itemsPerPage?: number;
+  itemsPerPage: number;
+
+  onItemsPerPageChange: (value: number) => void;
 
   emptyMessage?: string;
   emptyDescription?: string;
@@ -24,7 +28,8 @@ export default function DataList<T>({
   items,
   renderItem,
   renderTable,
-  itemsPerPage = 10,
+  itemsPerPage = 6,
+  onItemsPerPageChange,
   emptyMessage = "Nenhum registro encontrado",
   emptyDescription,
 }: DataListProps<T>) {
@@ -153,10 +158,16 @@ export default function DataList<T>({
 
       {/* =====================================
           DESKTOP
-      ===================================== */}
-
+      ===================================== */}    
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        itemsPerPage={itemsPerPage}
+        onPageChange={goToPage}
+        onItemsPerPageChange={onItemsPerPageChange}
+      />
+      <br/>
       <div className="data-list-desktop">
-
         <div className="data-list-table-wrapper">
           {renderTable ? (
             renderTable(desktopItems)
@@ -176,64 +187,6 @@ export default function DataList<T>({
             </table>
           )}
         </div>
-
-        {totalPages > 1 && (
-          <div className="data-list-pagination">
-
-            <button
-              type="button"
-              disabled={currentPage === 1}
-              onClick={() =>
-                goToPage(
-                  currentPage - 1
-                )
-              }
-            >
-              ← Anterior
-            </button>
-
-            <div className="data-list-pages">
-              {Array.from(
-                {
-                  length: totalPages,
-                },
-                (_, index) =>
-                  index + 1
-              ).map((page) => (
-                <button
-                  type="button"
-                  key={page}
-                  className={
-                    page === currentPage
-                      ? "active"
-                      : ""
-                  }
-                  onClick={() =>
-                    goToPage(page)
-                  }
-                >
-                  {page}
-                </button>
-              ))}
-            </div>
-
-            <button
-              type="button"
-              disabled={
-                currentPage === totalPages
-              }
-              onClick={() =>
-                goToPage(
-                  currentPage + 1
-                )
-              }
-            >
-              Próxima →
-            </button>
-
-          </div>
-        )}
-
       </div>
 
       {/* =====================================

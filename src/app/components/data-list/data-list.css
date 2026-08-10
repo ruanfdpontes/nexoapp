@@ -60,6 +60,32 @@
   margin-top: 24px;
 }
 
+.data-list-per-page {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #64748b;
+  font-size: 13px;
+}
+
+.data-list-per-page select {
+  height: 36px;
+
+  padding: 0 10px;
+
+  border: 1px solid #ddd;
+  border-radius: 6px;
+
+  background: #fff;
+
+  color: #334155;
+
+  font-size: 13px;
+
+  cursor: pointer;
+}
+
 .data-list-pagination button {
   border: 1px solid #ddd;
   background: #fff;

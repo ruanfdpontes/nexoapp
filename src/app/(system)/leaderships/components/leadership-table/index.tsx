@@ -2,6 +2,7 @@
 
 import { Leadership } from "@/app/interfaces/leadership.interface";
 import { Eye } from "lucide-react";
+import FormatPhone from '@/utils/format-phone'
 
 interface LeadershipTableProps {
   leaderships: Leadership[];
@@ -18,6 +19,7 @@ export default function LeadershipTable({
           <th>Nome</th>
           <th>Regional</th>
           <th>Bairro</th>
+          <th className="text-center">Contato</th>
           <th className="text-right">Projeção de votos</th>
           <th className="text-center">Ações</th>
         </tr>
@@ -43,6 +45,31 @@ export default function LeadershipTable({
             <td>
               {leadership.address_neighborhood ||
                 "Não informado"}
+            </td>
+
+            <td className="text-center">
+              {leadership.phone_number ||
+              leadership.mobile_number ? (
+                <div className="leadership-phones">
+                  {leadership.mobile_number && (
+                    <span>
+                      {FormatPhone(
+                        leadership.mobile_number
+                      )}
+                    </span>
+                  )}
+
+                  {leadership.phone_number && (
+                    <span>
+                      {FormatPhone(
+                        leadership.phone_number
+                      )}
+                    </span>
+                  )}
+                </div>
+              ) : (
+                "Não informado"
+              )}
             </td>
 
             <td className="text-right">

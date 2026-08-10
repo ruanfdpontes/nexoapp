@@ -17,6 +17,7 @@ import LeadershipTable from "./components/leadership-table";
 export default function LeadershipTemplate() {
   const [search, setSearch] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
+  const [itemsPerPage, setItemsPerPage] = useState(6);
 
   const {
     leaderships,
@@ -162,7 +163,8 @@ export default function LeadershipTemplate() {
 
           <DataList<Leadership>
             items={leadershipsFiltered}
-            itemsPerPage={10}
+            itemsPerPage={itemsPerPage}
+            onItemsPerPageChange={setItemsPerPage}
             emptyMessage="Nenhuma liderança encontrada"
             emptyDescription="Tente buscar por outro nome, regional, bairro, endereço ou telefone."
 

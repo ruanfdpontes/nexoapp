@@ -1,6 +1,7 @@
 "use client";
 
 import { Leadership } from "@/app/interfaces/leadership.interface";
+import FormatPhone from "@/utils/format-phone";
 import { Eye } from "lucide-react";
 
 interface LeadershipCardProps {
@@ -10,26 +11,21 @@ interface LeadershipCardProps {
 export default function LeadershipCard({
   leadership,
 }: LeadershipCardProps) {
+  const hasPhone =
+    !!leadership.phone_number ||
+    !!leadership.mobile_number;
+
   return (
     <article className="leadership-card">
 
       <div className="leadership-card-header">
-
-        <div className="leadership-avatar">
-          {leadership.name
-            .charAt(0)
-            .toUpperCase()}
-        </div>
-
         <div>
           <h2>{leadership.name}</h2>
-
           <span>
             {leadership.region ||
               "Regional não informada"}
           </span>
         </div>
-
       </div>
 
       <div className="leadership-info">
@@ -56,8 +52,37 @@ export default function LeadershipCard({
             ).toLocaleString("pt-BR")}
           </p>
         </div>
+        <div>
+          <span className="info-label">
+            Telefone
+          </span>
 
+          <div className="leadership-phones">
+            {hasPhone ? (
+              <>
+                {leadership.mobile_number && (
+                  <span>
+                    {FormatPhone(
+                      leadership.mobile_number
+                    )}
+                  </span>
+                )}
+
+                {leadership.phone_number && (
+                  <span>
+                    {FormatPhone(
+                      leadership.phone_number
+                    )}
+                  </span>
+                )}
+              </>
+            ) : (
+              <span>Não informado</span>
+            )}
+          </div>
+        </div>
       </div>
+      
       <br/>
       <button
         type="button"
