@@ -21,6 +21,10 @@
 }
 
 @media (max-width: 700px) {
+  .system-layout {
+    padding: 24px;
+  }
+
   .system-content,
   .system-layout:has(.sidebar.sidebar-collapsed) .system-content {
     width: 100%;

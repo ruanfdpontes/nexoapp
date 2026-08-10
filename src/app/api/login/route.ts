@@ -32,6 +32,21 @@ export async function POST(request: Request) {
       maxAge: 60 * 60 * 8,
     });
 
+    response.cookies.set({
+      name: "nexoapp_user",
+      value: JSON.stringify({
+        name: result.user.name,
+        username: result.user.username,
+        email: result.user.email,
+        admin: result.user.admin,
+      }),
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 8,
+    });
+
     return response;
   } catch (error) {
     console.error(error);

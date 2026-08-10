@@ -1,32 +1,29 @@
 import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { verifyToken } from "@/lib/auth";
 
 export async function GET() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get("nexoapp_token")?.value;
+  try {
+    const cookieStore = await cookies();
 
-  if (!token) {
+    const userCookie =
+      cookieStore.get("nexoapp_user");
+
+    if (!userCookie) {
+      return NextResponse.json(
+        { error: "Usuário não autenticado." },
+        { status: 401 }
+      );
+    }
+
+    const user = JSON.parse(userCookie.value);
+
+    return NextResponse.json(user);
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
-      { error: "Não autenticado" },
+      { error: "Sessão inválida." },
       { status: 401 }
     );
   }
-
-  const payload = await verifyToken(token);
-
-  if (!payload) {
-    return NextResponse.json(
-      { error: "Token inválido" },
-      { status: 401 }
-    );
-  }
-
-  return NextResponse.json({
-    userId: payload.userId,
-    username: payload.username,
-    email: payload.email,
-    name: payload.name,
-    admin: payload.admin,
-  });
 }

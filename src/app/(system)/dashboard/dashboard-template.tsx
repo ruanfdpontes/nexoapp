@@ -2,16 +2,11 @@
 
 import { useEffect, useState } from "react";
 import "./dashboard-template.css";
-
-type User = {
-  name: string;
-  username: string;
-  email: string
-  admin: boolean;
-};
+import User from "@/app/interfaces/user.interface";
 
 export default function DashboardTemplate() {
   const [me, setMe] = useState<User | null>(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(() => {
     async function loadMe() {
@@ -26,7 +21,12 @@ export default function DashboardTemplate() {
 
         setMe(data);
       } catch (error) {
-        console.error("Erro ao carregar usuário:", error);
+        console.error(
+          "Erro ao carregar usuário:",
+          error
+        );
+      } finally {
+        setLoadingUser(false);
       }
     }
 
@@ -39,7 +39,9 @@ export default function DashboardTemplate() {
         <header className="dashboard-header">
           <div>
             <h3>
-              Olá, {me?.name ?? "usuário"}
+              {loadingUser
+                ? "Olá..."
+                : `Olá, ${me?.name ?? "usuário"}`}
             </h3>
             <p>Acompanhe suas atividades e visitas</p>
           </div>
