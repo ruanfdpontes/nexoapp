@@ -4,7 +4,7 @@ import { verifyToken } from "@/lib/auth";
 import LeadershipsTemplate from "./leadership-template";
 import LeadershipTemplate from "./leadership-template";
 
-export default async function LeadershipPage() {
+export default async function LeadershipsPage() {
     const cookieStore = await cookies();
   
     const token = cookieStore.get("nexoapp_token")?.value;

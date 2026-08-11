@@ -9,6 +9,9 @@ import {
   X,
   ChevronRight,
   ChevronLeft,
+  CalendarCheck,
+  Handshake,
+  ListChecks,
 } from "lucide-react";
 
 import "./index.css";
@@ -17,6 +20,7 @@ import Logo from "../logo";
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
   const [collapsed, setCollapsed] = useState(false);
+  const [activitiesOpen, setActivitiesOpen] = useState(false);
 
   const router = useRouter();
 
@@ -118,6 +122,50 @@ export default function Sidebar() {
             </span>
           </button>
 
+          <button
+            type="button"
+            className="menu-item"
+            onClick={() => navigate("/visits")}
+          >
+            <CalendarCheck
+              className="menu-icon"
+              size={20}
+            />
+
+            <span className="menu-label">
+              Visitas
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className="menu-item"
+            onClick={() => navigate("/meetings")}
+          >
+            <Handshake
+              className="menu-icon"
+              size={20}
+            />
+
+            <span className="menu-label">
+              Reuniões
+            </span>
+          </button>
+
+          <button
+            type="button"
+            className="menu-item"
+            onClick={() => navigate("/activities")}
+          >
+            <ListChecks
+              className="menu-icon"
+              size={20}
+            />
+
+            <span className="menu-label">
+              Atividades
+            </span>
+          </button>
         </nav>
 
         {/* FOOTER */}
