@@ -1,4 +1,4 @@
-export interface Leadership {
+export default interface Leadership {
   id: number;
   name: string;
   votes_projection: number;
@@ -7,7 +7,7 @@ export interface Leadership {
   phone_number: string | null;
   mobile_number: string | null;
 
-  address_cep: string | null;
+  address_zip_code: string | null;
   address_street: string | null;
   address_number: string | null;
   address_complement: string | null;

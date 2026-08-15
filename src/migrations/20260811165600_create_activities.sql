@@ -5,15 +5,16 @@ CREATE TABLE IF NOT EXISTS activities (
     activity_type_id INTEGER NOT NULL,
 
     title VARCHAR(255) NOT NULL,
-    activity_date DATE,
+    activity_date  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     description TEXT,
 
-    address_street VARCHAR(255),
-    address_number VARCHAR(20),
-    address_neighborhood VARCHAR(150),
-    address_city VARCHAR(150),
-    address_state VARCHAR(2),
-    address_zip_code VARCHAR(10),
+    address_zip_code TEXT,
+    address_street TEXT,
+    address_number TEXT,
+    address_complement TEXT,
+    address_neighborhood TEXT,
+    address_city TEXT,
+    address_state TEXT,
 
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,

@@ -5,14 +5,14 @@ import {
   FormActions,
   FormField,
 } from "@/app/components/form";
-import { Leadership } from "@/app/interfaces/leadership.interface";
 import { useEffect, useState } from "react";
 import type { FormEvent } from "react";
 import BrazilianStates from '@/utils/brazilian-states'
 import './index.css'
 import PhoneField from "@/app/components/form/phone-field";
 import CepField from "@/app/components/form/cep-field";
-import { getAddressByCep } from '@/app/services/cep.service';
+import { getAddressByZipCode } from '@/app/services/zip-code.service';
+import Leadership from "@/app/interfaces/leadership.interface";
 
 interface LeadershipFormPartialProps {
   leadership?: Leadership | null;
@@ -44,7 +44,7 @@ export default function LeadershipFormPartial({
   // ENDEREÇO PRINCIPAL
   // =========================================
 
-  const [addressCep, setAddressCep] = useState("");
+  const [addressZipCode, setAddressZipCode] = useState("");
   const [addressStreet, setAddressStreet] = useState("");
   const [addressNumber, setAddressNumber] = useState("");
   const [addressComplement, setAddressComplement] = useState("");
@@ -68,9 +68,9 @@ export default function LeadershipFormPartial({
 
   const isEditing = !!leadership;
 
-  const searchCep = async (cep: string) => {
+  const searchZipCode = async (zipCode: string) => {
     try {
-      const data = await getAddressByCep(cep);
+      const data = await getAddressByZipCode(zipCode);
 
       setAddressStreet(data.logradouro || "");
       setAddressNeighborhood(data.bairro || "");
@@ -103,8 +103,8 @@ export default function LeadershipFormPartial({
         leadership.mobile_number ?? ""
       );
 
-      setAddressCep(
-        leadership.address_cep ?? ""
+      setAddressZipCode(
+        leadership.address_zip_code ?? ""
       );
 
       setAddressStreet(
@@ -158,7 +158,7 @@ export default function LeadershipFormPartial({
       setPhoneNumber("");
       setMobileNumber("");
 
-      setAddressCep("");
+      setAddressZipCode("");
       setAddressStreet("");
       setAddressNumber("");
       setAddressComplement("");
@@ -205,7 +205,7 @@ export default function LeadershipFormPartial({
             phone_number: phoneNumber,
             mobile_number: mobileNumber,
 
-            address_cep: addressCep,
+            address_cep: addressZipCode,
             address_street: addressStreet,
             address_number: addressNumber,
             address_complement: addressComplement,
@@ -246,7 +246,7 @@ export default function LeadershipFormPartial({
   }
 
   const cepFilled =
-    addressCep.replace(/\D/g, "").length === 8;
+    addressZipCode.replace(/\D/g, "").length === 8;
 
   // =========================================
   // FORMULÁRIO
@@ -353,15 +353,15 @@ export default function LeadershipFormPartial({
         <div className="form-card-body">
           <CepField
             label="CEP"
-            name="address_cep"
-            value={addressCep}
+            name="address_zip_code"
+            value={addressZipCode}
             onChange={(value) => {
-              setAddressCep(value);
+              setAddressZipCode(value);
 
-              const cleanCep = value.replace(/\D/g, "");
+              const cleanZipCode = value.replace(/\D/g, "");
 
-              if (cleanCep.length === 8) {
-                searchCep(cleanCep);
+              if (cleanZipCode.length === 8) {
+                searchZipCode(cleanZipCode);
               }
             }}
             disabled={loading}

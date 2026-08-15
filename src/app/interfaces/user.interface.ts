@@ -1,4 +1,4 @@
-interface User {
+export default interface User {
   id: number;
   name: string;
   username: string;
@@ -9,5 +9,3 @@ interface User {
   updated_at: string;
   deleted_at: string;
 }
-
-export default User

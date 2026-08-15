@@ -4,6 +4,7 @@ import {
   FormEvent,
   InputHTMLAttributes,
   ReactNode,
+  TextareaHTMLAttributes,
 } from "react";
 
 import "./index.css";
@@ -17,6 +18,11 @@ interface FormProps {
 interface FormFieldProps
   extends InputHTMLAttributes<HTMLInputElement> { 
   label: string; 
+}
+
+interface FormTextareaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label: string;
 }
 
 interface FormActionsProps {
@@ -50,6 +56,7 @@ export function FormField({
   required = false,
   disabled = false,
   onChange,
+  ...props
 }: FormFieldProps) {
   return (
     <div className="form-field">
@@ -72,6 +79,45 @@ export function FormField({
         required={required}
         disabled={disabled}
         onChange={onChange}
+        {...props}
+      />
+    </div>
+  );
+}
+
+export function FormTextarea({
+  label,
+  name,
+  value,
+  placeholder,
+  required = false,
+  disabled = false,
+  onChange,
+  rows = 4,
+  ...props
+}: FormTextareaProps) {
+  return (
+    <div className="form-field">
+      <label htmlFor={name}>
+        {label}
+
+        {required && (
+          <span className="form-required">
+            *
+          </span>
+        )}
+      </label>
+
+      <textarea
+        id={name}
+        name={name}
+        value={value}
+        placeholder={placeholder}
+        required={required}
+        disabled={disabled}
+        onChange={onChange}
+        rows={rows}
+        {...props}
       />
     </div>
   );

@@ -1,4 +1,4 @@
-export interface CepResponse {
+export default interface ZipCodeResponse {
   cep: string;
   logradouro: string;
   complemento: string;

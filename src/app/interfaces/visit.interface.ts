@@ -1,27 +1,24 @@
-export interface Leadership {
+export default interface Visit {
   id: number;
-  name: string;
-  votes_projection: number;
-  region: string;
 
-  phone_number: string | null;
-  mobile_number: string | null;
+  title: string;
+  description?: string | null;
+  visit_date?: string | null;
+  visited: boolean;
 
-  address_cep: string | null;
-  address_street: string | null;
-  address_number: string | null;
-  address_complement: string | null;
-  address_neighborhood: string | null;
-  address_city: string | null;
-  address_state: string | null;
+  address_zip_code?: string | null;
+  address_street?: string | null;
+  address_number?: string | null;
+  address_complement?: string | null;
+  address_neighborhood?: string | null;
+  address_city?: string | null;
+  address_state?: string | null;
 
-  voter_registration_number: string | null;
-  voter_zone: string | null;
-  voter_section: string | null;
-  voter_city: string | null;
-  voter_location: string | null;
+  leadership_id: number;
+  leadership_name?: string | null;
+  leadership_region?: string | null;
+  leadership_neighborhood?: string | null;
 
-  created_at: string;  
-  updated_at: string | null;
-  deleted_at: string | null;
+  created_at?: string;
+  updated_at?: string;
 }

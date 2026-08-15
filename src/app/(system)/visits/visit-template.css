@@ -1,10 +1,10 @@
-.leaderships-page {
+.visits-page {
   min-height: 100%;
   background: #f6f7f9;
   margin-bottom: 35px;
 }
 
-.leaderships-container {
+.visits-container {
   width: 100%;
   max-width: 1200px;
 }
@@ -13,7 +13,7 @@
    HEADER
 ========================================= */
 
-.leaderships-header {
+.visits-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -22,7 +22,7 @@
   margin-bottom: 28px;
 }
 
-.leaderships-header h1 {
+.visits-header h1 {
   margin: 0;
 
   font-size: 28px;
@@ -31,7 +31,7 @@
   color: #171717;
 }
 
-.leaderships-header p {
+.visits-header p {
   margin: 6px 0 0;
 
   color: #707070;
@@ -42,7 +42,7 @@
    BOTÃO PRINCIPAL
 ========================================= */
 
-.add-leadership-button {
+.add-visit-button {
   border: none;
   border-radius: 8px;
 
@@ -60,7 +60,7 @@
   transition: background 0.2s ease;
 }
 
-.add-leadership-button:hover {
+.add-visit-button:hover {
   background: #303030;
 }
 
@@ -68,7 +68,7 @@
    BUSCA
 ========================================= */
 
-.leaderships-search {
+.visits-search {
   margin-bottom: 20px;
 }
 
@@ -76,7 +76,7 @@
    LISTA
 ========================================= */
 
-.leaderships-list {
+.visits-list {
   margin-top: 10px;
 }
 
@@ -89,7 +89,7 @@
    CARD MOBILE
 ========================================= */
 
-.leadership-card {
+.visit-card {
   width: 100%;
   min-width: 0;
   box-sizing: border-box;
@@ -106,47 +106,37 @@
     box-shadow 0.2s ease;
 }
 
-.leadership-card:hover {
+.visit-card:hover {
   border-color: #cccccc;
 
   box-shadow:
     0 5px 18px rgba(0, 0, 0, 0.05);
 }
 
-.leadership-card-header {
+/* =========================================
+   HEADER DO CARD
+========================================= */
+
+.visit-card-header {
   display: flex;
-  align-items: center;
-  gap: 5px;
-  margin-bottom: 10px;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  gap: 12px;
 }
 
-.leadership-avatar {
-  width: 42px;
-  height: 42px;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  flex-shrink: 0;
-
-  border-radius: 50%;
-
-  background: #eeeeee;
-
-  color: #333333;
-
-  font-weight: 700;
+.visit-card-title {
+  min-width: 0;
 }
 
-.leadership-card h2 {
+.visit-card h2 {
   margin: 0;
 
   font-size: 16px;
   color: #222222;
 }
 
-.leadership-card-header span {
+.visit-card-header span {
   display: block;
 
   margin-top: 3px;
@@ -155,11 +145,50 @@
   font-size: 13px;
 }
 
+.visit-card-location {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.visit-card-location strong {
+  color: #171717;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.visit-card-location small {
+  color: #9ca3af;
+  font-size: 11px;
+}
+
+.visit-card-location span {
+  color: #737373;
+  font-size: 12px;
+}
+
+.visit-card-leadership {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.visit-card-leadership span {
+  color: #737373;
+  font-size: 11px;
+}
+
+.visit-card-leadership strong {
+  color: #374151;
+  font-size: 13px;
+  font-weight: 500;
+}
+
 /* =========================================
    INFORMAÇÕES DO CARD
 ========================================= */
 
-.leadership-info {
+.visit-info {
   display: grid;
 
   grid-template-columns: 1fr 1fr;
@@ -171,6 +200,10 @@
   border-top: 1px solid #eeeeee;
 }
 
+.visit-info-item {
+  min-width: 0;
+}
+
 .info-label {
   font-size: 11px;
   font-weight: 600;
@@ -180,7 +213,7 @@
   color: #999999;
 }
 
-.leadership-info p {
+.visit-info p {
   margin: 4px 0 0;
 
   font-size: 13px;
@@ -189,11 +222,33 @@
 }
 
 /* =========================================
-   BOTÃO DO CARD
+   STATUS
 ========================================= */
 
-.view-leadership:hover {
-  background: #f5f5f5;
+.visit-status {
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 9px;
+
+  border-radius: 999px;
+
+  font-size: 11px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+.visit-status.pending {
+  background: #fff7ed;
+  color: #c2410c;
+}
+
+.visit-status.completed {
+  background: #ecfdf5;
+  color: #047857;
 }
 
 /* =========================================
@@ -236,13 +291,13 @@
 ========================================= */
 
 .data-list-table,
-.leadership-table {
+.visit-table {
   width: 100%;
   border-collapse: collapse;
 }
 
 .data-list-table th,
-.leadership-table th {
+.visit-table th {
   height: 48px;
 
   padding: 0 16px;
@@ -262,10 +317,10 @@
 }
 
 .data-list-table td,
-.leadership-table td {
+.visit-table td {
   height: 64px;
 
-  padding: 0px 16px;
+  padding: 0 16px;
 
   border-bottom: 1px solid #f1f5f9;
 
@@ -280,11 +335,11 @@
    STRIPED
 ========================================= */
 
-.leadership-table tbody tr:nth-child(odd) td {
+.visit-table tbody tr:nth-child(odd) td {
   background-color: #ffffff;
 }
 
-.leadership-table tbody tr:nth-child(even) td {
+.visit-table tbody tr:nth-child(even) td {
   background-color: #f8fafc;
 }
 
@@ -292,7 +347,7 @@
    HOVER DA LINHA
 ========================================= */
 
-.leadership-table tbody tr:hover td {
+.visit-table tbody tr:hover td {
   background-color: #f1f5f9;
 }
 
@@ -301,22 +356,22 @@
 ========================================= */
 
 .data-list-table tbody tr:last-child td,
-.leadership-table tbody tr:last-child td {
+.visit-table tbody tr:last-child td {
   border-bottom: none;
 }
 
 /* =========================================
-   NOME DA LIDERANÇA
+   TÍTULO DA VISITA
 ========================================= */
 
-.leadership-table-name {
+.visit-table-title {
   display: flex;
-  align-items: center;
+  flex-direction: column;
 
-  gap: 12px;
+  gap: 3px;
 }
 
-.leadership-table-name strong {
+.visit-table-title strong {
   color: #1e293b;
 
   font-size: 14px;
@@ -325,11 +380,51 @@
   white-space: nowrap;
 }
 
+.visit-table-title span {
+  color: #64748b;
+
+  font-size: 12px;
+
+  max-width: 300px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* =========================================
+   LOCAL
+========================================= */
+
+.visit-table-location {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+}
+
+.visit-table-location strong {
+  color: #334155;
+
+  font-size: 13px;
+  font-weight: 500;
+
+  white-space: nowrap;
+}
+
+.visit-table-location span {
+  color: #64748b;
+
+  font-size: 12px;
+
+  white-space: nowrap;
+}
+
 /* =========================================
    AÇÃO
 ========================================= */
 
-.leadership-table-action {
+.visit-table-action {
   padding: 7px 12px;
 
   border: 1px solid #e2e8f0;
@@ -348,7 +443,7 @@
     border-color 0.2s ease;
 }
 
-.leadership-table-action:hover {
+.visit-table-action:hover {
   background: #f8fafc;
 
   border-color: #cbd5e1;
@@ -367,90 +462,94 @@
 }
 
 .data-list-table th.text-center,
-.leadership-table th.text-center,
+.visit-table th.text-center,
 .data-list-table td.text-center,
-.leadership-table td.text-center {
+.visit-table td.text-center {
   text-align: center;
 }
 
 .data-list-table th.text-right,
-.leadership-table th.text-right,
+.visit-table th.text-right,
 .data-list-table td.text-right,
-.leadership-table td.text-right {
+.visit-table td.text-right {
   text-align: right;
 }
-
-.leadership-phones {
+.visit-table-leadership {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 3px;
+  gap: 2px;
 }
 
-.leadership-phones span {
-  white-space: nowrap;
+.visit-table-leadership strong {
+  color: #171717;
+  font-size: 14px;
+  font-weight: 500;
 }
 
-.table-actions {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
+.visit-table-leadership span {
+  color: #737373;
+  font-size: 12px;
 }
 
+.visit-table-leadership small {
+  color: #9ca3af;
+  font-size: 11px;
+}
 /* =========================================
    MOBILE
 ========================================= */
 
 @media (max-width: 700px) {
-  .leaderships-page {
-    margin-bottom: 0px;
+  .visits-page {
+    margin-bottom: 0;
   }
 
-  .leaderships-header {
+  .visits-header {
     align-items: flex-start;
 
     flex-direction: column;
   }
 
-  .leaderships-header h1 {
+  .visits-header h1 {
     font-size: 24px;
   }
 
-  .add-leadership-button {
+  .add-visit-button {
     width: 100%;
   }
 
-  .leadership-info {
+  .visit-info {
     grid-template-columns: 1fr;
 
     gap: 20px;
   }
 
-  .leadership-phones {
+  .visit-card-header {
+    flex-direction: column;
+  }
+
+  .visit-card-leadership {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 3px;
+    gap: 1px;
+    margin-top: 6px;
   }
 
-  .leadership-card-actions {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    gap: 8px;
-
-    margin-top: 18px;
+  .visit-card-leadership .leadership-label {
+    color: #737373;
+    font-size: 11px;
+    font-weight: 500;
   }
 
-  .leadership-card-actions .btn {
-    width: 40px;
-    height: 40px;
+  .visit-card-leadership .leadership-name {
+    color: #374151;
+    font-size: 14px;
+    font-weight: 500;
+  }
 
-    padding: 0;
-
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+  .visit-card-leadership .leadership-region,
+  .visit-card-leadership .leadership-neighborhood {
+    color: #9ca3af;
+    font-size: 12px;
   }
 }

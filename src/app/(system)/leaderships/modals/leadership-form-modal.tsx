@@ -1,8 +1,8 @@
 "use client";
 
 import Modal from "@/app/components/modal";
-import LeadershipFormPartial from "../../partials/leadership-form-partial";
-import { Leadership } from "@/app/interfaces/leadership.interface";
+import Leadership from "@/app/interfaces/leadership.interface";
+import LeadershipFormPartial from "../partials/leadership-form-partial";
 
 interface LeadershipFormModalProps {
   open: boolean;

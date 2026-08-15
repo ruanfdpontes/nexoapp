@@ -1,66 +1,70 @@
 "use client";
 
-import "./leadership-template.css";
+import "./visit-template.css";
 
 import { useMemo, useState } from "react";
 
-import LeadershipFormModal from "./modals/leadership-form-modal";
-import { UseLeaderships } from "@/app/hooks/use-leaderships";
+import { UseVisits } from "@/app/hooks/use-visits";
 
 import SearchInput from "@/app/components/search-input";
 import DataList from "@/app/components/data-list/data-list";
 
-import LeadershipCard from "./components/leadership-card";
-import LeadershipTable from "./components/leadership-table";
-import Leadership from "@/app/interfaces/leadership.interface";
+import VisitCard from "./components/visit-card";
+import VisitTable from "./components/visit-table";
+import Visit from "@/app/interfaces/visit.interface";
+import VisitFormModal from "./modals/visit-form-modal";
 
-export default function LeadershipTemplate() {
+export default function VisitTemplate() {
   const [search, setSearch] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [itemsPerPage, setItemsPerPage] = useState(6);
 
   const {
-    leaderships,
+    visits,
     loading,
     error,
-    loadLeaderships,
-  } = UseLeaderships();
+    loadVisits,
+  } = UseVisits();
 
   // =========================================
   // FILTRO
   // =========================================
 
-  const leadershipsFiltered = useMemo(() => {
+  const visitsFiltered = useMemo(() => {
     const term = search.toLowerCase().trim();
 
     if (!term) {
-      return leaderships;
+      return visits;
     }
 
-    return leaderships.filter((leadership) => {
+    return visits.filter((visit) => {
       return (
-        leadership.name
-          .toLowerCase()
-          .includes(term) ||
-
-        leadership.region
+        visit.title
           ?.toLowerCase()
           .includes(term) ||
 
-        leadership.address_neighborhood
+        visit.description
           ?.toLowerCase()
           .includes(term) ||
 
-        leadership.address_street
+        visit.address_neighborhood
           ?.toLowerCase()
           .includes(term) ||
 
-        leadership.mobile_number
+        visit.address_street
+          ?.toLowerCase()
+          .includes(term) ||
+
+        visit.address_city
+          ?.toLowerCase()
+          .includes(term) ||
+
+        visit.address_state
           ?.toLowerCase()
           .includes(term)
       );
     });
-  }, [leaderships, search]);
+  }, [visits, search]);
 
   // =========================================
   // SUCESSO
@@ -68,39 +72,39 @@ export default function LeadershipTemplate() {
 
   async function handleSuccess() {
     setModalOpen(false);
-    await loadLeaderships();
+    await loadVisits();
   }
 
   // =========================================
   // ADICIONAR
   // =========================================
 
-  function addLeadership() {
+  function addVisit() {
     setModalOpen(true);
   }
 
   return (
-    <div className="leaderships-page">
+    <div className="visits-page">
 
       {/* =========================================
           HEADER
       ========================================= */}
 
-      <header className="leaderships-header">
+      <header className="visits-header">
         <div>
-          <h1>Lideranças</h1>
+          <h1>Visitas</h1>
 
           <p>
-            Consulte e gerencie as lideranças cadastradas.
+            Consulte e gerencie as visitas cadastradas.
           </p>
         </div>
 
         <button
           type="button"
           className="btn btn-primary"
-          onClick={addLeadership}
+          onClick={addVisit}
         >
-          + Adicionar liderança
+          + Adicionar visita
         </button>
       </header>
 
@@ -108,11 +112,11 @@ export default function LeadershipTemplate() {
           BUSCA
       ========================================= */}
 
-      <section className="leaderships-search">
+      <section className="visits-search">
         <SearchInput
           value={search}
           onChange={setSearch}
-          placeholder="Buscar por nome, regional, bairro, endereço ou telefone..."
+          placeholder="Buscar por título, endereço, bairro ou cidade..."
         />
       </section>
 
@@ -123,18 +127,18 @@ export default function LeadershipTemplate() {
       <section>
         <div className="list-header">
           <span>
-            {leadershipsFiltered.length}{" "}
-            {leadershipsFiltered.length === 1
-              ? "liderança encontrada"
-              : "lideranças encontradas"}
+            {visitsFiltered.length}{" "}
+            {visitsFiltered.length === 1
+              ? "visita encontrada"
+              : "visitas encontradas"}
           </span>
         </div>
 
         {/* CARREGANDO */}
 
-        {loading && leaderships.length === 0 ? (
+        {loading && visits.length === 0 ? (
           <div className="empty-state">
-            <p>Carregando lideranças...</p>
+            <p>Carregando visitas...</p>
           </div>
 
         ) : error ? (
@@ -143,15 +147,15 @@ export default function LeadershipTemplate() {
 
           <div className="empty-state">
             <h3>
-              Não foi possível carregar as lideranças
+              Não foi possível carregar as visitas
             </h3>
 
             <p>{error}</p>
 
             <button
               type="button"
-              className="add-leadership-button"
-              onClick={loadLeaderships}
+              className="add-visit-button"
+              onClick={loadVisits}
             >
               Tentar novamente
             </button>
@@ -161,20 +165,20 @@ export default function LeadershipTemplate() {
 
           /* LISTA */
 
-          <DataList<Leadership>
-            items={leadershipsFiltered}
+          <DataList<Visit>
+            items={visitsFiltered}
             itemsPerPage={itemsPerPage}
             onItemsPerPageChange={setItemsPerPage}
-            emptyMessage="Nenhuma liderança encontrada"
-            emptyDescription="Tente buscar por outro nome, regional, bairro, endereço ou telefone."
+            emptyMessage="Nenhuma visita encontrada"
+            emptyDescription="Tente buscar por outro título, endereço, bairro ou cidade."
 
             /* =====================================
                 MOBILE
             ===================================== */
 
-            renderItem={(leadership) => (
-              <LeadershipCard
-                leadership={leadership}
+            renderItem={(visit) => (
+              <VisitCard
+                visit={visit}
               />
             )}
 
@@ -182,9 +186,9 @@ export default function LeadershipTemplate() {
                 DESKTOP
             ===================================== */
 
-            renderTable={(leaderships) => (
-              <LeadershipTable
-                leaderships={leaderships}
+            renderTable={(visits) => (
+              <VisitTable
+                visits={visits}
               />
             )}
           />
@@ -195,7 +199,7 @@ export default function LeadershipTemplate() {
           MODAL
       ========================================= */}
 
-      <LeadershipFormModal
+      <VisitFormModal
         open={modalOpen}
         onClose={() => setModalOpen(false)}
         onSuccess={handleSuccess}

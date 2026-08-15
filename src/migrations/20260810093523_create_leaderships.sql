@@ -7,7 +7,7 @@ CREATE TABLE IF NOT EXISTS leaderships (
     phone_number TEXT,
     mobile_number TEXT,
 
-    address_cep TEXT,
+    address_zip_code TEXT,
     address_street TEXT,
     address_number TEXT,
     address_complement TEXT,

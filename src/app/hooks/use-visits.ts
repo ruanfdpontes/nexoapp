@@ -1,36 +1,36 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import Leadership from "../interfaces/leadership.interface";
+import Visit from "../interfaces/visit.interface";
 
-export const UseLeaderships = () => {
-  const [leaderships, setLeaderships] = useState<Leadership[]>([]);
+export const UseVisits = () => {
+  const [visits, setVisits] = useState<Visit[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const loadLeaderships = useCallback(async () => {
+  const loadVisits = useCallback(async () => {
     try {
       setLoading(true);
       setError(null);
 
-      const response = await fetch("/api/leaderships");
+      const response = await fetch("/api/visits");
 
       const data = await response.json();
 
       if (!response.ok) {
         throw new Error(
-          data.error || "Não foi possível carregar as lideranças."
+          data.error || "Não foi possível carregar as visitas."
         );
       }
 
-      setLeaderships(data);
+      setVisits(data);
     } catch (error) {
       console.error(error);
 
       setError(
         error instanceof Error
           ? error.message
-          : "Não foi possível carregar as lideranças."
+          : "Não foi possível carregar as visitas."
       );
     } finally {
       setLoading(false);
@@ -38,13 +38,13 @@ export const UseLeaderships = () => {
   }, []);
 
   useEffect(() => {
-    loadLeaderships();
-  }, [loadLeaderships]);
+    loadVisits();
+  }, [loadVisits]);
 
   return {
-    leaderships,
+    visits,
     loading,
     error,
-    loadLeaderships,
+    loadVisits,
   };
-}
+};

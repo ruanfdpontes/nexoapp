@@ -1,8 +1,8 @@
 "use client";
 
-import { Leadership } from "@/app/interfaces/leadership.interface";
+import Leadership from "@/app/interfaces/leadership.interface";
 import FormatPhone from "@/utils/format-phone";
-import { Eye } from "lucide-react";
+import { CalendarDays, Eye } from "lucide-react";
 
 interface LeadershipCardProps {
   leadership: Leadership;
@@ -27,7 +27,6 @@ export default function LeadershipCard({
           </span>
         </div>
       </div>
-
       <div className="leadership-info">
 
         <div>
@@ -84,12 +83,25 @@ export default function LeadershipCard({
       </div>
       
       <br/>
-      <button
-        type="button"
-        className="btn btn-full btn-secondary"
-      >
-        <Eye size={30} /> Detalhe
-      </button>
+      <div className="leadership-card-actions">
+        <button
+          type="button"
+          className="btn btn-secondary"
+          title="Ver visitas"
+          aria-label="Ver visitas"
+        >
+          <CalendarDays size={30} />
+        </button>
+
+        <button
+          type="button"
+          className="btn btn-secondary"
+          title="Ver detalhes"
+          aria-label="Ver detalhes"
+        >
+          <Eye size={30} />
+        </button>
+      </div>
     </article>
   );
 }

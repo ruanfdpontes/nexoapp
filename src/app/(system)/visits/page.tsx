@@ -1,3 +1,5 @@
-export default async function VisitsPage() {  
-    return <></>;
+import VisitTemplate from "./visit-template";
+
+export default function VisitsPage() {
+  return <VisitTemplate />;
 }

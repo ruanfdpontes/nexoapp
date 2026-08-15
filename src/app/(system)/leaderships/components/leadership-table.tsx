@@ -1,8 +1,8 @@
 "use client";
 
-import { Leadership } from "@/app/interfaces/leadership.interface";
-import { Eye } from "lucide-react";
+import { CalendarDays, Eye } from "lucide-react";
 import FormatPhone from '@/utils/format-phone'
+import Leadership from "@/app/interfaces/leadership.interface";
 
 interface LeadershipTableProps {
   leaderships: Leadership[];
@@ -79,12 +79,25 @@ export default function LeadershipTable({
             </td>
 
             <td className="text-center">
-              <button
-                type="button"
-                className="btn btn-sm btn-secondary"
-              >
-                <Eye size={16} /> Detalhe
-              </button>
+              <div className="table-actions">
+                <button
+                  type="button"
+                  className="btn btn-sm btn-secondary"
+                  title="Ver visitas"
+                  aria-label="Ver visitas"
+                >
+                  <CalendarDays size={16} />
+                </button>
+
+                <button
+                  type="button"
+                  className="btn btn-sm btn-secondary"
+                  title="Ver detalhes"
+                  aria-label="Ver detalhes"
+                >
+                  <Eye size={16} />
+                </button>
+              </div>
             </td>
 
           </tr>
